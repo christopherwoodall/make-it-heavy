@@ -1,5 +1,6 @@
 import json
 import yaml
+import os
 from openai import OpenAI
 from tools import discover_tools
 
@@ -15,7 +16,7 @@ class OpenRouterAgent:
         # Initialize OpenAI client with OpenRouter
         self.client = OpenAI(
             base_url=self.config['openrouter']['base_url'],
-            api_key=self.config['openrouter']['api_key']
+            api_key=os.getenv(self.config['openrouter']['api_key'])
         )
         
         # Discover tools dynamically
